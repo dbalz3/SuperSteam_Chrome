@@ -1,0 +1,125 @@
+{
+  "highlightOwnedGames": true,
+  "ownedGamesColor": "#FF0000",
+  "highlightWishlistGames": true,
+  "wishlistGamesColor": "#0000FF",
+  "showPriceHistory": true,
+  "hideInstallSteamButton": true,
+  "hideAboutMenu": true,
+  "show3rdPartyDrmWarnings": true,
+  "showXOriginTradingProhibited": true,
+  "showMetaCriticScores": true,
+  "showSteamDbLinks": true,
+  "showWidescreenInfo": true,
+  "showHowLongToBeatInfo": true,
+  "showSteamChartsInfo": true,
+  "showPcGamingWikiLinks": true,
+  "showAStatsLinks": true,
+  "enableSearchResultsInfinteScroll": true,
+  "showAppDescription": true,
+  "showTotalSpent": true,
+  "replaceSteamGreenlightBanner": true,
+  "showExternalProfileLinks": true,
+  "showSteamRepStatus": true,
+  "showCompareLinks": true,
+  "showTransactionSummary": true,
+  "showAllAchievements": true,
+  "showRegionalPriceComparisons": true,
+  "showYoutubeVideo":true,
+  "region1":"au",
+  "region2":"br",
+  "region3":"ca",
+  "region4":"eu1",
+  "region5":"id",
+  "region6":"jp",
+  "region7":"my",
+  "region8":"mx",
+  "region9":"nz",
+  "showSteamSpyInfo": true,
+  "priceComparisonRegions": [
+    {
+      "value": "",
+      "label": "None"
+    },
+    {
+      "value": "au",
+      "label": "Australia"
+    },
+    {
+      "value": "br",
+      "label": "Brazil"
+    },
+    {
+      "value": "ca",
+      "label": "Canada"
+    },
+    {
+      "value": "eu1",
+      "label": "European Union"
+    },
+    {
+      "value": "id",
+      "label": "Indonesia"
+    },
+    {
+      "value": "jp",
+      "label": "Japan"
+    },
+    {
+      "value": "my",
+      "label": "Malaysia"
+    },
+    {
+      "value": "mx",
+      "label": "Mexico"
+    },
+    {
+      "value": "NZ",
+      "label": "New Zealand"
+    },
+    {
+      "value": "NO",
+      "label": "Norway"
+    },
+    {
+      "value": "PH",
+      "label": "Philippines"
+    },
+    {
+      "value": "RU",
+      "label": "Russia"
+    },
+    {
+      "value": "SG",
+      "label": "Singapore"
+    },
+    {
+      "value": "KR",
+      "label": "South Korea"
+    },
+    {
+      "value": "TH",
+      "label": "Thailand"
+    },
+    {
+      "value": "TR",
+      "label": "Turkey"
+    },
+    {
+      "value": "UA",
+      "label": "Ukraine"
+    },
+    {
+      "value": "GB",
+      "label": "United Kingdom"
+    },
+    {
+      "value": "US",
+      "label": "United States"
+    },
+    {
+      "value": "VN",
+      "label": "Vietnam"
+    }
+  ]
+}

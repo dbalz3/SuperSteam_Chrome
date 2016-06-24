@@ -1,0 +1,90 @@
+[
+  {
+    "value": "",
+    "label": "None"
+  },
+  {
+    "value": "au",
+    "label": "Australia"
+  },
+  {
+    "value": "br",
+    "label": "Brazil"
+  },
+  {
+    "value": "ca",
+    "label": "Canada"
+  },
+  {
+    "value": "eu1",
+    "label": "European Union"
+  },
+  {
+    "value": "eu2",
+    "label": "European Union 2"
+  },
+  {
+    "value": "id",
+    "label": "Indonesia"
+  },
+  {
+    "value": "jp",
+    "label": "Japan"
+  },
+  {
+    "value": "my",
+    "label": "Malaysia"
+  },
+  {
+    "value": "mx",
+    "label": "Mexico"
+  },
+  {
+    "value": "NZ",
+    "label": "New Zealand"
+  },
+  {
+    "value": "NO",
+    "label": "Norway"
+  },
+  {
+    "value": "PH",
+    "label": "Philippines"
+  },
+  {
+    "value": "RU",
+    "label": "Russia"
+  },
+  {
+    "value": "SG",
+    "label": "Singapore"
+  },
+  {
+    "value": "KR",
+    "label": "South Korea"
+  },
+  {
+    "value": "TH",
+    "label": "Thailand"
+  },
+  {
+    "value": "TR",
+    "label": "Turkey"
+  },
+  {
+    "value": "UA",
+    "label": "Ukraine"
+  },
+  {
+    "value": "GB",
+    "label": "United Kingdom"
+  },
+  {
+    "value": "US",
+    "label": "United States"
+  },
+  {
+    "value": "VN",
+    "label": "Vietnam"
+  }
+]
