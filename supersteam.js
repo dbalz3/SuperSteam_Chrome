@@ -4385,8 +4385,8 @@
 		if ($("#personalAchieve").length > 0 || $("#achievementsSelector").length > 0) {
 
 				$("#tabs").before("<div id='achievement_sort_options' class='sort_options'>" + language.sort_by + "<span id='achievement_sort_default'>" + language.theworddefault + "</span><span id='achievement_sort_date' class='es_achievement_sort_link'>" + language.date_unlocked + "</span></div>");
-				$("#personalAchieve, #achievementsSelector").clone().insertAfter("#personalAchieve, #achievementsSelector").attr("id", "personalAchieveSorted").css("padding-left", "16px").hide();
-
+				$("#personalAchieve, #achievementsSelector").clone().insertAfter("#personalAchieve, #achievementsSelector").attr("id", "personalAchieveSorted").hide();
+			  
 				var achRows = [];
 				$("#personalAchieveSorted").find(".achieveUnlockTime").each(function() {
 					var push = new Array();
@@ -4395,6 +4395,7 @@
 					$(this).parent().parent().next().remove();
 					$(this).parent().parent().next().remove();
 					push[1] = $(this).parent().parent();
+					$(this).parent().parent().parent().remove();
 					var unlocktime = $(this).text().trim().replace(/^.+\: /, "").replace(/jan/i, "01").replace(/feb/i, "02").replace(/mar/i, "03").replace(/apr/i, "04").replace(/may/i, "05").replace(/jun/i, "06").replace(/jul/i, "07").replace(/aug/i, "08").replace(/sep/i, "09").replace(/oct/i, "10").replace(/nov/i, "11").replace(/dec/i, "12");
 					var year = new Date().getFullYear();
 					if ($(this).text().replace(/^.+\: /, "").match(/^\d/)) {
@@ -4417,17 +4418,11 @@
 
 				achRows.sort();
 
-				$(achRows).each(function() {
-					if ($(".smallForm").length > 0) {
-						$("#personalAchieveSorted").find("form").next().after("<br clear='left'><img src='http://cdn.steamcommunity.com/public/images/trans.gif' width='1' height='11' border='0'><br>");
-						$("#personalAchieveSorted").find("form").next().after(this[1]);
-						$("#personalAchieveSorted").find("form").next().after(this[0]);
-					} else {
-						$("#personalAchieveSorted").prepend("<br clear='left'><img src='http://cdn.steamcommunity.com/public/images/trans.gif' width='1' height='11' border='0'><br>");
-						$("#personalAchieveSorted").prepend(this[1]);
-						$("#personalAchieveSorted").prepend(this[0]);
-					}
-				});
+                $(achRows).each(function() {
+                    $("#personalAchieveSorted").before(
+                        $("<div class='achieveRow'>").append(this[0], this[1])
+                    );
+                });
 
 				$("#achievement_sort_default").on("click", function() {
 					$(this).removeClass('es_achievement_sort_link');

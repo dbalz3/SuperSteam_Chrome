@@ -679,6 +679,11 @@ user agent stylesheetdiv {
 	cursor: pointer;
 }
 
+.supers_achievement_sort_link {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
 .browse_tag_game_cap img {
 	margin-left: 8px;
 	width: 214px;
