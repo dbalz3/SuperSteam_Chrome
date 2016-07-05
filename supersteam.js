@@ -2975,9 +2975,7 @@
 					image = assetUrls.img_overlay_ea_467x181;
 					break;
 				}
-				overlay_img = $("<img class='es_overlay' src='" + image + "'>");
-				$(overlay_img).css({"left":image_left+"px"});
-				$(node).find(selector.trim()).before(overlay_img);
+				$(node).find(selector.trim()).wrap('<span class="ea_image_container"/>').before('<span class="supers_overlay"><img src="'+image+'"/></span>');
 			}
 		});
 	}
@@ -3335,13 +3333,13 @@
 				case "steamcommunity.com":
 				switch(true) {
 					case /^\/(?:id|profiles)\/.+\/wishlist/.test(window.location.pathname):
-					$(".gameLogo").each(function(index, value) { check_early_access($(this), "ea_184x69.png", 0); });
+					$(".gameListRowLogo").each(function(index, value) { check_early_access($(this), "ea_184x69.png", 0); });
 					break;
 					case /^\/(?:id|profiles)\/(.+)\/games/.test(window.location.pathname):
-					$(".gameLogo").each(function(index, value) { check_early_access($(this), "ea_184x69.png", 0); });
+					$(".gameListRowLogo").each(function(index, value) { check_early_access($(this), "ea_184x69.png", 0); });
 					break;
 					case /^\/(?:id|profiles)\/(.+)\/followedgames/.test(window.location.pathname):
-					$(".gameLogo").each(function(index, value) { check_early_access($(this), "ea_184x69.png", 4); });
+					$(".gameListRowLogo").each(function(index, value) { check_early_access($(this), "ea_184x69.png", 4); });
 					break;
 					case /^\/(?:id|profiles)\/.+\/\b(home|myactivity|status)\b/.test(window.location.pathname):
 					$(".blotter_gamepurchase_content").find("a").each(function(index, value) {

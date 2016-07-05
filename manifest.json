@@ -181,7 +181,7 @@
             ],
             "js": [
                 "jspm_packages/github/togakangaroo/simple-modules@master/simple-modules.js",
-                "jspm_packages/npm/jquery@2.2.1/dist/jquery.min.js",
+                "jspm_packages/npm/jquery@2.2.4/dist/jquery.min.js",
                 "js/definejquery.js",
                 "js/localstoragehelpers.js",
                 "js/localization.js",

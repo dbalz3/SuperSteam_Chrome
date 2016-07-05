@@ -22,11 +22,11 @@
   },
   "homepage": "https://github.com/dbalz3/SuperSteam_Chrome#readme",
   "devDependencies": {
-    "jspm": "^0.16.29"
+    "jspm": "^0.16.39"
   },
   "jspm": {
     "dependencies": {
-      "jquery": "npm:jquery@^2.2.1",
+      "jquery": "npm:jquery@~2.2.4",
       "togakangaroo/simple-modules": "github:togakangaroo/simple-modules@master"
     },
     "devDependencies": {

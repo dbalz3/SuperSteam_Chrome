@@ -492,6 +492,10 @@ img.platform_small, .platform_img {
 	position: absolute;
 	z-index: 4;
 }
+.supers_overlay {
+	position: absolute;
+	z-index: 4;
+}
 .es_card_search {
 	padding:0px 2px;
 	margin-top: 2px;
