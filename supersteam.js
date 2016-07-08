@@ -1912,6 +1912,13 @@
 		});
 	}
 
+	function click_through_mature_filter() {
+		console.log("click through filter");
+		if($("#age_gate_btn_continue").length){
+			console.log("click through filter2");
+            $("#age_gate_btn_continue").click();
+		}
+	}
 	// Add SteamDB links to pages
 	function add_steamdb_links(appid, type) {
 		if (userPrefs.showSteamDbLinks === true) {
@@ -5202,6 +5209,7 @@
 
 					case /^\/app\/.*/.test(window.location.pathname):
 					var appid = get_appid(window.location.host + window.location.pathname);
+                    click_through_mature_filter();
 					add_steamdb_links(appid, "gamehub");
 					break;
 
