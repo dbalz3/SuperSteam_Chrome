@@ -1668,7 +1668,7 @@
 					var appid = link.match(/\/(\d+)\/.+$/)[1];
 					var market_hash_name = link.match(/\/\d+\/(.+)$/)[1];
 					superSteamAsset.get("http://steamcommunity.com/market/priceoverview/?country=" + cc + "&currency=" + currencyLocal + "&appid=" + appid + "&market_hash_name=" + market_hash_name, function(json) {
-						var data = JSON.parse(json);
+						var data = json;
 						if (data["success"]) {
 							node.find(".market_listing_es_lowest").html(data["lowest_price"]);
 							var my_price = currency.parse($(node).find(".market_listing_price span span:first").text().trim());
