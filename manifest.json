@@ -171,7 +171,8 @@
                 "https://steamcommunity.com/*",
                 "http://*.steampowered.com/app/*",
                 "http://*.steampowered.com/sub/*",
-                "http://*.steampowered.com/sale/*"
+                "http://*.steampowered.com/sale/*",
+                "http://*.super-steam.net/makeYourOwnGleamTest.php"
             ],
             "exclude_matches": [
                 "https://store.steampowered.com/checkout/*",
@@ -181,7 +182,7 @@
             ],
             "js": [
                 "jspm_packages/github/togakangaroo/simple-modules@master/simple-modules.js",
-                "jspm_packages/npm/jquery@2.2.1/dist/jquery.min.js",
+                "jspm_packages/npm/jquery@2.2.4/dist/jquery.min.js",
                 "js/definejquery.js",
                 "js/localstoragehelpers.js",
                 "js/localization.js",
@@ -192,6 +193,7 @@
                 "js/loadinventory.js",
                 "js/youtubeloader.js",
                 "js/inlinescriptloader.js",
+                "js/steamkey.js",
                 "supersteam.js"
             ],
             "css": [

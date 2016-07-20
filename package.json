@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dbalz3/SuperSteam_Chrome.git"
+    "url": "git+https://github.com/dbalz3/SuperSteamChrome.git"
   },
   "keywords": [
     "Steam",
@@ -18,15 +18,15 @@
   "author": "Daniel Balazs, Steve Price",
   "license": "GPL-3.0",
   "bugs": {
-    "url": "https://github.com/dbalz3/SuperSteam_Chrome/issues"
+    "url": "https://github.com/dbalz3/SuperSteamChrome/issues"
   },
-  "homepage": "https://github.com/dbalz3/SuperSteam_Chrome#readme",
+  "homepage": "https://github.com/dbalz3/SuperSteamChrome#readme",
   "devDependencies": {
     "jspm": "^0.16.39"
   },
   "jspm": {
     "dependencies": {
-      "jquery": "npm:jquery@~2.2.1",
+      "jquery": "npm:jquery@2.2.4",
       "togakangaroo/simple-modules": "github:togakangaroo/simple-modules@master"
     },
     "devDependencies": {
