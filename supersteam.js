@@ -1697,7 +1697,9 @@
 		$(".es_market_lowest_button").click(function() {
 			add_lowest_market_price_data();
 		});
-	}
+	
+                //jQuery( ".market_listing_row" ).children().eq(7).remove();
+        }
 
 
 	function account_total_spent(){
