@@ -26,7 +26,7 @@
   },
   "jspm": {
     "dependencies": {
-      "jquery": "npm:jquery@~2.2.4",
+      "jquery": "npm:jquery@~2.2.1",
       "togakangaroo/simple-modules": "github:togakangaroo/simple-modules@master"
     },
     "devDependencies": {
