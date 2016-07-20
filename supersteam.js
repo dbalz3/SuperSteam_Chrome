@@ -1520,7 +1520,7 @@
 				var currency_symbol = "";
 
 				function get_market_data(txt) {
-					var data = JSON.parse(txt);
+					var data = txt;
 					market = data['results_html'];
 					if (!currency_symbol) currency_symbol = currency.symbolFromString($(market).find(".market_listing_price").text().trim());
 
