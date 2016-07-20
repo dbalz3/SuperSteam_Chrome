@@ -1699,6 +1699,7 @@
 		});
 	
                 //jQuery( ".market_listing_row" ).children().eq(7).remove();
+                jQuery(".market_listing_my_price:nth-child(8)").remove();
         }
 
 
