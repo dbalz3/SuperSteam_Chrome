@@ -239,7 +239,7 @@
 			}
 		}
 	}
-//Am now able to write to local storage. If and switch statement issues, front-end.
+
 	function add_wishlist_notes() {
 		if(is_signed_in) {
 
@@ -449,8 +449,7 @@
 
 		currency_type = currency.symbolToType(currency_symbol);
 
-		//This should be fixed
-		//Instructions to test: Log in, go to: http://steamcommunity.com/profiles/76561197997376623/wishlist
+		
 		total = currency.format(parseFloat(total), currency_type);
 		$(".games_list").after("<link href='http://store.akamai.steamstatic.com/public/css/v6/game.css' rel='stylesheet' type='text/css'><div class='game_area_purchase_game' style='width: 600px; margin-top: 15px;'><h1>" + language.wishlist + "</h1><p class='package_contents'><b>" + language.bundle.includes.replace("(__num__)", items) + ":</b> " + gamelist + "</p><div class='game_purchase_action'><div class='game_purchase_action_bg'><div class='game_purchase_price price'>" + total + "</div></div></div></div></div></div>");
 	}
@@ -806,9 +805,7 @@
 	// User profile pages
 	function add_community_profile_links() {
 
-		//Function is not defined
-		//Instructions to test: Log in, go here: http://steamcommunity.com/profiles/76561198064752918. Function is supposed to display things on the side of the screen ("SteamRep")
-		//if (showprofilelinks == true) {
+		
 			if ($("#reportAbuseModal").length > 0) { var steamID = document.getElementsByName("abuseID")[0].value; }
 			if (steamID === undefined && document.documentElement.outerHTML.match(/steamid"\:"(.+)","personaname/)) { var steamID = document.documentElement.outerHTML.match(/steamid"\:"(.+)","personaname/)[1]; }
 			var ico_steamrep, ico_steamtrades, ico_steamgifts, ico_achievementstats, ico_backpacktf, ico_astats;
@@ -837,18 +834,24 @@
 
 			var htmlstr = '';
 			htmlstr += '<div class="profile_count_link"><a href="http://steamrep.com/profiles/' + steamID + '" target="_blank"><span class="count_link_label">SteamRep</span>&nbsp;<span class="profile_count_link_total">';
-			if (showprofilelinks_display != 2) { htmlstr += '<img src="' + ico_steamrep + '" class="profile_link_icon">'; }
+                        if (showprofilelinks_display != 2) { htmlstr += '<img src="' + ico_steamrep + '" class="profile_link_icon">'; } else {htmlstr += '&nbsp;';}
+                        htmlstr += '</span></a></div>';
 			htmlstr += '<div class="profile_count_link"><a href="http://steamdb.info/calculator/?player=' + steamID + '" target="_blank"><span class="count_link_label">SteamDB</span>&nbsp;<span class="profile_count_link_total">';
-			if (showprofilelinks_display != 2) { htmlstr += '<img src="' + ico_steamdb + '" class="profile_link_icon">'; }
+			if (showprofilelinks_display != 2) { htmlstr += '<img src="' + ico_steamdb + '" class="profile_link_icon">'; }else {htmlstr += '&nbsp;';}
+                        htmlstr += '</span></a></div>';
 			htmlstr += '<div class="profile_count_link"><a href="http://www.steamgifts.com/go/user/' + steamID + '" target="_blank"><span class="count_link_label">SteamGifts</span>&nbsp;<span class="profile_count_link_total">';
-			if (showprofilelinks_display != 2) { htmlstr += '<img src="' + ico_steamgifts + '" class="profile_link_icon">'; }
-			htmlstr += '<div class="profile_count_link"><a href="http://www.achievementstats.com/index.php?action=profile&playerId=' + steamID + '" target="_blank"><span class="count_link_label">Achievement Stats</span>&nbsp;<span class="profile_count_link_total">';
-			if (showprofilelinks_display != 2) { htmlstr += '<img src="' + ico_achievementstats + '" class="profile_link_icon">'; }
-			htmlstr += '<div class="profile_count_link"><a href="http://backpack.tf/profiles/' + steamID + '" target="_blank"><span class="count_link_label">Backpack.tf</span>&nbsp;<span class="profile_count_link_total">';
-			if (showprofilelinks_display != 2) { htmlstr += '<img src="' + ico_backpacktf + '" class="profile_link_icon">'; }
-			htmlstr += '<div class="profile_count_link"><a href="http://astats.astats.nl/astats/User_Info.php?steamID64=' + steamID + '" target="_blank"><span class="count_link_label">AStats.nl</span>&nbsp;<span class="profile_count_link_total">';
-			if (showprofilelinks_display != 2) { htmlstr += '<img src="' + ico_astats + '" class="profile_link_icon">'; }
-			htmlstr += "<div class=\"profile_count_link\" id=\"es_permalink_div\"><span id=\"es_permalink_text\">"+language.permalink+"</span><input type=\"text\" id=\"es_permalink\" value=\"" + window.location.protocol + "//steamcommunity.com/profiles/"+steamID+"\" readonly></div>";
+                        if (showprofilelinks_display != 2) { htmlstr += '<img src="' + ico_achievementstats + '" class="profile_link_icon">'; }else {htmlstr += '&nbsp;';}
+                        htmlstr += '</span></a></div>';
+                        htmlstr += '<div class="profile_count_link"><a href="http://www.achievementstats.com/index.php?action=profile&playerId=' + steamID + '" target="_blank"><span class="count_link_label">Achievement Stats</span>&nbsp;<span class="profile_count_link_total">';
+                        if (showprofilelinks_display != 2) { htmlstr += '<img src="' + ico_achievementstats + '" class="profile_link_icon">'; }else {htmlstr += '&nbsp;';}
+                        htmlstr += '</span></a></div>';
+                        htmlstr += '<div class="profile_count_link"><a href="http://backpack.tf/profiles/' + steamID + '" target="_blank"><span class="count_link_label">Backpack.tf</span>&nbsp;<span class="profile_count_link_total">';
+                        if (showprofilelinks_display != 2) { htmlstr += '<img src="' + ico_backpacktf + '" class="profile_link_icon">'; }else {htmlstr += '&nbsp;';}
+                        htmlstr += '</span></a></div>';
+                        htmlstr += '<div class="profile_count_link"><a href="http://astats.astats.nl/astats/User_Info.php?steamID64=' + steamID + '" target="_blank"><span class="count_link_label">AStats.nl</span>&nbsp;<span class="profile_count_link_total">';
+                        if (showprofilelinks_display != 2) { htmlstr += '<img src="' + ico_astats + '" class="profile_link_icon">'; }else {htmlstr += '&nbsp;';}
+                        htmlstr += '</span></a></div>';
+                        htmlstr += "<div class=\"profile_count_link\" id=\"es_permalink_div\"><span id=\"es_permalink_text\">"+language.permalink+"</span><input type=\"text\" id=\"es_permalink\" value=\"" + window.location.protocol + "//steamcommunity.com/profiles/"+steamID+"\" readonly></div>";
 
             
                         if (htmlstr != '') { $(".profile_item_links").append(htmlstr); }
@@ -858,8 +861,7 @@
 				$(".profile_item_links").append(htmlstr);
 				$(".profile_rightcol").after("<div style='clear: both'></div>");
 			}
-		//}
-	}
+            }
 
 	// Fix "No image available" in wishlist
 	function fix_wishlist_image_not_found() {
@@ -1181,8 +1183,7 @@
 	//http://store.steampowered.com/app/208480/
 	function add_hltb_info(appid) {
 
-		//if (userPrefs.showHowLongToBeatInfo == true) {
-			superSteamAsset.get("https://steamwatcher.com/boiler/howlong/beattime.php?appid=" + appid, function (txt) {
+                        superSteamAsset.get("https://steamwatcher.com/boiler/howlong/beattime.php?appid=" + appid, function (txt) {
 
 				if (txt.length > 0) {
 					var data = JSON.parse(txt);
@@ -1208,7 +1209,6 @@
 					}
 				}
 			});
-		//}
 	}
 
 	function add_pcgamingwiki_link(appid) {
@@ -1932,6 +1932,14 @@
 			separator.removeClass().addClass(((tab_count > 0) && (tab_count%4 == 0)) ? 'games_list_tab_row_separator' : 'games_list_tab_separator');
 		});
 	}
+        
+        function click_through_mature_filter() {
+            console.log("click through filter");
+            if($("#age_gate_btn_continue").length){
+              console.log("click through filter2");
+               $("#age_gate_btn_continue").click();
+            }
+        }
 
 	// Add SteamDB links to pages
 	function add_steamdb_links(appid, type) {
@@ -2569,7 +2577,6 @@
 			var appname = $(".apphub_AppName").text();
 
 			superSteamAsset.get('https://store.steampowered.com/account/licenses/', function (txt) {
-			//http://stackoverflow.com/questions/4073427/jquery-find-text-inside-td
 			//Suspicious JQuery
 				//var earliestPurchase = $(txt).find(".td #wht_date .td:contains(" + appname + ")").closest(".tr").last(),
 				//var earliestPurchase = $(txt).find(".td .license_date_col").nextUntil(".tr");
@@ -2997,23 +3004,16 @@
 					image = assetUrls.img_overlay_ea_467x181;
 					break;
 				}
-				overlay_img = $("<img class='es_overlay' src='" + image + "'>");
-				$(overlay_img).css({"left":image_left+"px"});
-				$(node).find(selector.trim()).before(overlay_img);
+				$(node).find(selector.trim()).wrap('<span class="ea_image_container"/>').before('<span class="supers_overlay"><img src="'+image+'"/></span>');
 			}
 		});
 	}
 
 	function show_regional_pricing() {
-		//var jsonString = JSON.stringify(userPrefs);
-		//userPrefs = JSON.parse(jsonString);
 		if (userPrefs.showRegionalPriceComparisons) {
 			var api_url = "http://store.steampowered.com/api/packagedetails/";
 			var countries = [];
-			//where are these values?
-			//we need to pull these values in from userprefs
-			//need to access each country that exists as part of the user's selected list
-
+			
 
 			if (userPrefs.region1 != "") countries.push(userPrefs.region1);
 			if (userPrefs.region2 != "") countries.push(userPrefs.region2);
@@ -3072,8 +3072,7 @@
 					var flag_div = "<div class=\"es_flag\" style='background-image:url( " + assetUrls.img_flags + " )'></div>";
 
 					if (sub_info["prices"][country]){
-					//if (true){
-
+					
 						var price = sub_info["prices"][country]["final"]/100;
 						var local_price = sub_info["prices"][local_country]["final"]/100;
 						converted_price = converted_price/100;
@@ -3363,13 +3362,13 @@
 				case "steamcommunity.com":
 				switch(true) {
 					case /^\/(?:id|profiles)\/.+\/wishlist/.test(window.location.pathname):
-					$(".gameLogo").each(function(index, value) { check_early_access($(this), "ea_184x69.png", 0); });
+					$(".gameListRowLogo").each(function(index, value) { check_early_access($(this), "ea_184x69.png", 0); });
 					break;
 					case /^\/(?:id|profiles)\/(.+)\/games/.test(window.location.pathname):
-					$(".gameLogo").each(function(index, value) { check_early_access($(this), "ea_184x69.png", 0); });
+					$(".gameListRowLogo").each(function(index, value) { check_early_access($(this), "ea_184x69.png", 0); });
 					break;
 					case /^\/(?:id|profiles)\/(.+)\/followedgames/.test(window.location.pathname):
-					$(".gameLogo").each(function(index, value) { check_early_access($(this), "ea_184x69.png", 4); });
+					$(".gameListRowLogo").each(function(index, value) { check_early_access($(this), "ea_184x69.png", 4); });
 					break;
 					case /^\/(?:id|profiles)\/.+\/\b(home|myactivity|status)\b/.test(window.location.pathname):
 					$(".blotter_gamepurchase_content").find("a").each(function(index, value) {
@@ -4416,7 +4415,7 @@
 		if ($("#personalAchieve").length > 0 || $("#achievementsSelector").length > 0) {
 
 				$("#tabs").before("<div id='achievement_sort_options' class='sort_options'>" + language.sort_by + "<span id='achievement_sort_default'>" + language.theworddefault + "</span><span id='achievement_sort_date' class='es_achievement_sort_link'>" + language.date_unlocked + "</span></div>");
-				$("#personalAchieve, #achievementsSelector").clone().insertAfter("#personalAchieve, #achievementsSelector").attr("id", "personalAchieveSorted").css("padding-left", "16px").hide();
+				$("#personalAchieve, #achievementsSelector").clone().insertAfter("#personalAchieve, #achievementsSelector").attr("id", "personalAchieveSorted").hide();
 
 				var achRows = [];
 				$("#personalAchieveSorted").find(".achieveUnlockTime").each(function() {
@@ -4426,6 +4425,7 @@
 					$(this).parent().parent().next().remove();
 					$(this).parent().parent().next().remove();
 					push[1] = $(this).parent().parent();
+                                        $(this).parent().parent().parent().remove();
 					var unlocktime = $(this).text().trim().replace(/^.+\: /, "").replace(/jan/i, "01").replace(/feb/i, "02").replace(/mar/i, "03").replace(/apr/i, "04").replace(/may/i, "05").replace(/jun/i, "06").replace(/jul/i, "07").replace(/aug/i, "08").replace(/sep/i, "09").replace(/oct/i, "10").replace(/nov/i, "11").replace(/dec/i, "12");
 					var year = new Date().getFullYear();
 					if ($(this).text().replace(/^.+\: /, "").match(/^\d/)) {
@@ -4449,16 +4449,10 @@
 				achRows.sort();
 
 				$(achRows).each(function() {
-					if ($(".smallForm").length > 0) {
-						$("#personalAchieveSorted").find("form").next().after("<br clear='left'><img src='http://cdn.steamcommunity.com/public/images/trans.gif' width='1' height='11' border='0'><br>");
-						$("#personalAchieveSorted").find("form").next().after(this[1]);
-						$("#personalAchieveSorted").find("form").next().after(this[0]);
-					} else {
-						$("#personalAchieveSorted").prepend("<br clear='left'><img src='http://cdn.steamcommunity.com/public/images/trans.gif' width='1' height='11' border='0'><br>");
-						$("#personalAchieveSorted").prepend(this[1]);
-						$("#personalAchieveSorted").prepend(this[0]);
-					}
-				});
+                                    $("#personalAchieveSorted").before(
+                                            $("<div class='achieveRow'>").append(this[0], this[1])
+                                    );
+                                });
 
 				$("#achievement_sort_default").on("click", function() {
 					$(this).removeClass('es_achievement_sort_link');
@@ -4665,7 +4659,6 @@
 				$(".badge_row").each(function() {
 					var game = $(this).find(".badge_row_overlay").attr("href").match(/\/(\d+)\//);
 
-					//var game = 266840;
 					var foil = $(this).find("a:last").attr("href").match(/\?border=1/);
 					var node = $(this);
 					if (game) {
@@ -4885,8 +4878,7 @@
 
 	function add_acrtag_warning() {
 
-		//if (showACRTAG) {
-			var acrtag_subids, acrtag_promise = (function () {
+                        var acrtag_subids, acrtag_promise = (function () {
 				var deferred = new $.Deferred();
 				if (window.location.protocol != "https:") {
 					// is the data cached?
@@ -5053,29 +5045,17 @@
 			userPrefs.showMetaCriticScores = true;
 			userPrefs.showAppDescription = true;
 			showcustombg = false;
-			//Error: This one is not returning an error, but it may be linked to one of the other bugs because it was already commented out.
-			//Instructions to test: ???
-			//showprofilelinks_display = prefs;
 			showlanguagewarninglanguage = false;
 			showlanguagewarning = false;
 
 			// On window load...
-			//Works
 			add_super_steam_options();
-			//Assume that it works
 			add_fake_country_code_warning();
-			//add_language_warning();
-			//Works
 			removeInstallSteamButton();
-			//Works
 			remove_about_menu();
-			//Works
 			add_header_links();
-			//Works
 			process_early_access();
-			//Works
-            //add_username_to_list();
-
+			
 			switch (window.location.host) {
 				case "super-steam.net":
 					remove_supersteam_install_button();
@@ -5083,127 +5063,80 @@
 				case "store.steampowered.com":
 				switch (true) {
 					case /^\/cart\/.*/.test(window.location.pathname):
-					//Works
 					add_empty_cart_button();
 					break;
 
 					case /^\/app\/.*/.test(window.location.pathname):
 					var appid = get_appid(window.location.host + window.location.pathname);
-					//Get the methods in this case working
-					//Works on Age of Empires II HD provided that the item is in your wishlist
 					add_app_page_wishlist_changes(appid);
-					//Works for Assassin's Creed II
 					drm_warnings("app");
-
 					youtubeContentOnReady(appid);
-					//Works on every page
 					add_metacritic_userscore();
-					//Works on every page
 					add_steamreview_userscore(appid);
-					//Works on every page. Tested on Batman Arkham City and Assassin's Creed 2
 					add_widescreen_certification(appid);
-					//Works on Revolution Ace
 					add_hltb_info(appid);
-					//Works on every page
 					add_pcgamingwiki_link(appid);
-					//Works on every page
 					add_steamdb_links(appid, "app");
-					//Works on Assassin's Creed III
 					add_familysharing_warning(appid);
-					//Works on Revolution Ace
 					add_steamchart_info(appid);
-					//Works on Batman Arkham City
 					add_steamspy_info(appid);
-					//Works on Age of Mythology
 					add_app_badge_progress(appid);
-					//Works on Age of Mythology
 					add_dlc_checkboxes();
-					//Works on Age of Mythology
 					add_astats_link(appid);
-					//Works with Shadow of Mordor
 					add_acrtag_warning();
-					//Works but you must own the game. It enables the user to change the size of the review box.
 					add_review_toggle_button();
-					//Works
 					customize_app_page();
-					//Works
 					add_dlc_page_link(appid);
-					//Works ...I think
 					add_steamcardexchange_link(appid);
-					//Works
 					add_app_page_highlights();
-					//Works
 					show_pricing_history(appid, "app");
-					//Works on Revolution Ace
 					add_4pack_breakdown();
-					//Works on Rocket League
 					display_purchase_date();
-					//Works
 					show_regional_pricing();
 
-					//Works but you actually need a coupon
 					display_coupon_message(appid);
-					//Works but shows extra thumbnails
-
+					
 					break;
 
 					case /^\/sub\/.*/.test(window.location.pathname):
 					var subid = get_subid(window.location.host + window.location.pathname);
-					//http://store.steampowered.com/sub/73709/
-					//http://store.steampowered.com/sub/43840/
-					//Definitely gets called
+					
 					drm_warnings("sub");
-					//Definitely gets called
 					subscription_savings_check();
-					//Works
 					show_pricing_history(subid, "sub");
-					//Works
 					add_steamdb_links(subid, "sub");
-					//Definitely gets called
 					add_acrtag_warning();
-					//Works
 					show_regional_pricing();
 					break;
 
 					case /^\/agecheck\/.*/.test(window.location.pathname):
-					//Pretty sure this works.
 					send_age_verification();
 					break;
 
 					case /^\/account\/.*/.test(window.location.pathname):
-					//https://store.steampowered.com/account/
-					//Works
 					account_total_spent();
 
 					return;
 					break;
 
 					case /^\/steamaccount\/addfunds/.test(window.location.pathname):
-					//Works
 					add_custom_wallet_amount();
 					break;
 
 					case /^\/search\/.*/.test(window.location.pathname):
-					//Works
 					endless_scrolling();
-					//Works
 					add_hide_button_to_search();
 					break;
 
 					case /^\/sale\/.*/.test(window.location.pathname):
-					//No version has this working. Tested on Sega Publisher Sale Weekend
 					show_regional_pricing();
 					break;
 
 					// Storefront-front only
 					case /^\/$/.test(window.location.pathname):
-					//Works
 					add_popular_tab();
-					//Works
 					add_allreleases_tab();
-					//Works
 					add_carousel_descriptions();
-
 
 					window.setTimeout(function() { customize_home_page(); }, 1000);
 					break;
@@ -5217,37 +5150,25 @@
 				break;
 
 				case "steamcommunity.com":
-				//Works on account that has money in it.
 				add_wallet_balance_to_header();
 
 				switch (true) {
 					case /^\/(?:id|profiles)\/.+\/wishlist/.test(window.location.pathname):
 
-
-						//Works
 					appdata_on_wishlist();
 
-					//Works
 					add_wishlist_notes();
-					//Test case?
 					fix_wishlist_image_not_found();
-					//Works
 					add_empty_wishlist_buttons();
-					//Works
 					add_wishlist_filter();
-					//Works ...I think...if I had a discount?
 					add_wishlist_discount_sort();
-					//Works
 					add_wishlist_total();
-					//
 					add_wishlist_ajaxremove();
-
 
 					start_highlights_and_tags();
 					break;
 
 					case /^\/(?:id|profiles)\/.+\/\b(home|myactivity|status)\b/.test(window.location.pathname):
-					//Works
 					start_friend_activity_highlights();
 					bind_ajax_content_highlighting();
 					break;
@@ -5259,18 +5180,11 @@
 					break;
 
 					case /^\/(?:id|profiles)\/(.+)\/games/.test(window.location.pathname):
-					//Either add_gamelist_filter or add_gamelist_sort will be replaced by add_gamelist_common()
 					add_gamelist_filter();
-					//Works but the checkbox renders on the other side of the label
 					add_gamelist_common();
-					//http://steamcommunity.com/profiles/76561198170534190/games/?tab=all
-					//The language.size is the only thing different from Enhanced Steam, yet theirs works and ours doesn't
 					add_gamelist_sort();
-					//Works However, you must have used the local Steam client on your computer
 					totaltime();
-					//Works However, you must have used the local Steam client on your computer
 					totalsize();
-					//Works
 					add_gamelist_achievements();
 
 
@@ -5279,60 +5193,43 @@
 
 					case /^\/(?:id|profiles)\/.+\/badges/.test(window.location.pathname):
 
-					//Works
 					add_cardexchange_links();
 
-					//Works
 					add_badge_sort();
-					//Works
 					add_badge_view_options();
-					//Works
 					add_total_drops_count();
-					//Works Do we want to re-order the front-end?
 					add_badge_filter();
 					add_badge_completion_cost();
 					break;
 
 					case /^\/(?:id|profiles)\/.+\/stats/.test(window.location.pathname):
-					//http://steamcommunity.com/profiles/76561198114477930/stats/250900/achievements/
-					//Works
 					add_achievement_sort();
 					break;
 
 					case /^\/(?:id|profiles)\/.+\/gamecard/.test(window.location.pathname):
 					var gamecard = get_gamecard(window.location.pathname);
-					//Works
 					add_cardexchange_links(gamecard);
-					//Works
 					add_gamecard_market_links(gamecard);
-					//Works
 					add_gamecard_foil_link();
 					break;
 
 					case /^\/(?:id|profiles)\/.+\/friendsthatplay/.test(window.location.pathname):
-					//Leave it as is
 					add_friends_that_play();
 					break;
 
 					case /^\/(?:id|profiles)\/.+\/tradeoffers/.test(window.location.pathname):
-					//Works
 					add_decline_button();
 					break;
 
 					case /^\/(?:id|profiles)\/.+/.test(window.location.pathname):
-					//Works
 					add_community_profile_links();
-					//Works
 					add_wishlist_profile_link();
-					//Need to find a title with "Image not available" if there is one.
 					fix_profile_image_not_found();
 					break;
 
 					case /^\/(?:sharedfiles|workshop)\/.*/.test(window.location.pathname):
-					//"Greenlight Banner" on workshop?
 					hide_greenlight_banner();
 					break;
-					//Steam Market recently changed. Omit
 					case /^\/market\/.*/.test(window.location.pathname):
 
 					loadInventory.getInventory().then(() => {
@@ -5347,14 +5244,13 @@
 
 					case /^\/app\/.*/.test(window.location.pathname):
 					var appid = get_appid(window.location.host + window.location.pathname);
-					//Works
+                                        click_through_mature_filter();
 					add_steamdb_links(appid, "gamehub");
 					break;
 
 					case /^\/games\/.*/.test(window.location.pathname):
 					var appid = document.querySelector( 'a[href*="http://steamcommunity.com/app/"]' );
 					appid = appid.href.match( /(\d)+/g );
-					//No version has this working
 					add_steamdb_links(appid, "gamegroup");
 					break;
 				}
