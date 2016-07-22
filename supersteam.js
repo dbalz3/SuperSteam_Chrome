@@ -4654,7 +4654,7 @@
 	function add_badge_completion_cost() {
 
 		if ( $(".profile_small_header_texture :first a")[0].href == $(".playerAvatar:first a")[0].href.replace(/\/$/, "").replace(/\/$/, "")) {
-			$(".profile_xp_block_right").after("<div id='es_cards_worth'></div>");
+			$(".profile_xp_block_right").append("<div id='es_cards_worth'></div>");
 			superSteamAsset.get("http://store.steampowered.com/app/220/", function(txt) {
 				var currency_symbol = currency.symbolFromString($(txt).find(".price, .discount_final_price").text().trim());
 				var currency_type = currency.symbolToType(currency_symbol);
@@ -4705,10 +4705,14 @@
 							$(node).find(".badge_empty_name:last").after("<div class='badge_info_unlocked' style='color: #5c5c5c;'>" + escapeHTML(language.badge_completion_avg) + ": " + escapeHTML(cost) + "</div>");
 							$(node).find(".badge_empty_right").css("margin-top", "7px");
 							$(node).find(".gamecard_badge_progress .badge_info").css("width", "296px");
-
-							if ($(".pagebtn").length < 0 && total_worth > 0) {
+                                                        
+                                                        $("#es_cards_worth").text(language.drops_worth_avg + " " + worth_formatted);
+                                                        
+                                                       /*
+                                                        if ($(".pagebtn").length < 0 && total_worth > 0) {
 								$("#es_cards_worth").text(language.drops_worth_avg + " " + worth_formatted);
 							}
+                                                    */
 						});
 					}
 
