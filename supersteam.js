@@ -1950,6 +1950,22 @@
 		//will then check each game page for cards owned via ajax and determine if the craft badge button is present
 		//if craft badge button is present-->will add button to page so the user will know they can craft badge for whatever game
 		//need to reset loaded storage for cards that are no longer present and re-index for new coupons and emoticons that were yielded
+		//need to make sure the "crafting" animation can show on the page so the user knows he is crafting
+		//
+	}
+
+	function buy_all_missing_cards_for_badge() {
+		//index each card the user has
+		//determine all appids for all of the cards user has
+		//this function will take a long time -->offload to server--python script?
+		//send array of all appids to server and get return of total count of cards
+		//need to make sure card database is getting updated and we are pulling steam card exchange properly
+		//probably need to start updating this database more often
+		//
+		//we can pinwheel in the box until this info comes back
+		//we can also store it in local storage-->can store
+		//as the responses come back
+		//we can see what cards the user has and doesnt have
 		//
 	}
         
