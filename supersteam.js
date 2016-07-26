@@ -914,7 +914,8 @@
 				$.each(storefront_data, function(appid, app_data) {
 
 					if (app_data.success) {
-						if (app_data.data.platforms) {
+                                           
+                                              	if (app_data.data.platforms) {
 							var htmlstring = "";
 							var platforms = 0;
 							if (app_data.data.platforms.windows) { htmlstring += "<span class='platform_img win'></span>"; platforms += 1; }
@@ -926,6 +927,12 @@
 							$(node).parent().parent().parent().find(".btnv6_blue_hoverfade").append("<div class='platform-spans' align='right' >"+htmlstring+"</div>");
 							//$(node).parent().parent().parent().find("storepage_btn_ctn").append(htmlstring);
 							//.css({"position":"relative", "bottom":"20px"})
+						}
+                                                
+                                                // Add release date info to unreleased apps
+                                                localizedStrings = "";
+						if (app_data.data.release_date.coming_soon == true) {
+							$(node).parent().before("<div class='price'>" + localizedStrings + "Available: " + app_data.data.release_date.date + "</div>");
 						}
 					}
 				});
