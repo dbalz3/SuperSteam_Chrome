@@ -16,24 +16,34 @@
                             $('body').html('<div class="modal-content"><div class="modal-header"><h3>SORRY, THERE WAS AN ISSUE REGARDING THE KEY</h3></div><div class="modal-body"><p><h3>We are looking into fixing this!</h3></p><a href="http://store.steampowered.com/" id="returnLink">Return to Steam Website</a></div><div class="modal-footer"><h3>SORRY FOR THE INCONVIENCE</h3></div></div>');
                         }else{
                             
-                           /* WORK ON THIS STUFF HERE! 
+                            //WORK ON THIS STUFF HERE! 
                             var stringData = JSON.stringify(data);
                             
+                            var keyA = stringData.substring(2, 25);
+                            var keyB = stringData.substring(26, 49);
+                            var keyC = stringData.substring(50, 73);
+                            var keyD = stringData.substring(74, 97);
+                            var keyE = stringData.substring(98, 121);
+                            
                             var count = 0;
-                            var keyA = stringData.indexOf('Key1');
-                            var codeA = stringData.indexOf('Key1');
-
-                            while (keyA !== -1) {
+                            var keyCount = stringData.indexOf('Key');
+                            
+                            while (keyCount !== -1) {
                               count++;
-                              keyA = stringData.indexOf('Key1', keyA + 1);
+                              keyCount = stringData.indexOf('Key', keyCount + 1);
                             }
 
                             console.log(count); 
-                            */
+                            
                             
                             //this code below works!!!
-                            $('body').html('<div class="modal-content"><div class="modal-header"><h3>YOUR STEAM KEY IS BELOW!</h3></div><div class="modal-body"><p id="steamKey"></p><a href="http://store.steampowered.com/" id="returnLink">Return to Steam Website</a></div><div class="modal-footer"><h3>HAVE FUN!</h3></div></div>');
-                            $('#steamKey').html(data.toString());
+                            $('body').html('<div class="modal-content"><div class="modal-header"><h3>YOUR STEAM KEY IS BELOW!</h3></div><div class="modal-body"><p id="steamKeyA"></p><br><p id="steamKeyB"></p><br><p id="steamKeyC"></p><br><p id="steamKeyD"></p><br><p id="steamKeyE"></p><a href="http://store.steampowered.com/" id="returnLink">Return to Steam Website</a></div><div class="modal-footer"><h3>HAVE FUN!</h3></div></div>');
+                            $('#steamKeyA').html(keyA.toString());
+                            $('#steamKeyB').html(keyB.toString());
+                            $('#steamKeyC').html(keyC.toString());
+                            $('#steamKeyD').html(keyD.toString());
+                            $('#steamKeyE').html(keyE.toString());
+                            //$('#steamKey').html(data.toString());
                            
                         }
                     }
