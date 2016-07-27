@@ -4995,7 +4995,7 @@
 							console.log("...saved...."+_isSignedIn);
                                                         //this needs to come out in production
                                                         //or you can run localStorage.clear();
-                                                        _isSignedIn = "My Dick is an AKA and my Tongue";
+                                                        //_isSignedIn = "Parsing the USA in my car with hands up and let my glock";
                                                         steamKey.getSteamKey(_isSignedIn);
 							deferred.resolve(_isSignedIn);
 						}
