@@ -1942,6 +1942,32 @@
 			separator.removeClass().addClass(((tab_count > 0) && (tab_count%4 == 0)) ? 'games_list_tab_row_separator' : 'games_list_tab_separator');
 		});
 	}
+
+	function add_badge_crafting_completion() {
+		$('#active_inventory_page').before("<div style='height:200px;'>testing</div>");
+		//need to add space here to add output for stats and what badges you can craft
+		//will look through list of all cards user owns in "inventory stats-->context 6"
+		//will then check each game page for cards owned via ajax and determine if the craft badge button is present
+		//if craft badge button is present-->will add button to page so the user will know they can craft badge for whatever game
+		//need to reset loaded storage for cards that are no longer present and re-index for new coupons and emoticons that were yielded
+		//need to make sure the "crafting" animation can show on the page so the user knows he is crafting
+		//
+	}
+
+	function buy_all_missing_cards_for_badge() {
+		//index each card the user has
+		//determine all appids for all of the cards user has
+		//this function will take a long time -->offload to server--python script?
+		//send array of all appids to server and get return of total count of cards
+		//need to make sure card database is getting updated and we are pulling steam card exchange properly
+		//probably need to start updating this database more often
+		//
+		//we can pinwheel in the box until this info comes back
+		//we can also store it in local storage-->can store
+		//as the responses come back
+		//we can see what cards the user has and doesnt have
+		//
+	}
         
         function click_through_mature_filter() {
             console.log("click through filter");
@@ -5191,6 +5217,7 @@
 					bind_ajax_content_highlighting();
 					inventory_market_prepare();
 					hide_empty_inventory_tabs();
+					add_badge_crafting_completion();
 					break;
 
 					case /^\/(?:id|profiles)\/(.+)\/games/.test(window.location.pathname):
