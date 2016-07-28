@@ -54,14 +54,14 @@
                                 }
                             console.log(substrings);
                             
-                            $('body').html('<div class="modal-content"><div class="modal-header"><h3>YOUR STEAM KEY IS BELOW!</h3></div><div class="modal-body"><a href="http://store.steampowered.com/" id="returnLink">Return to Steam Website</a></div><div class="modal-footer"><h3>HAVE FUN!</h3></div></div>');
+                            $('body').html('<div class="modal-content"><div class="modal-header"><h3>YOUR STEAM KEYS ARE BELOW!</h3></div><div class="modal-body"></div><div class="modal-footer"><h3>HAVE FUN!</h3></div><br><p id ="steamLink"><a href="http://store.steampowered.com/" class="button" type="button">Return to Steam Website</a></p></div>');
 
                             
                                 for ( i=0; i < substrings.length; i++ ) {
                                     
                                     //var newKeys = $('<div>'+substrings[i]+'</div>');
                                     
-                                    $(".modal-body").append("<div>" + substrings[i] + "</div><br>");
+                                    $(".modal-body").append("<br><div class = 'steamKey'>" + substrings[i] + "</div><br>");
                                     //$("#steamKey").append(newKeys);
 
                                 }
