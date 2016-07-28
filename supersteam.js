@@ -5021,7 +5021,7 @@
 							console.log("...saved...."+_isSignedIn);
                                                         //this needs to come out in production
                                                         //or you can run localStorage.clear();
-                                                        _isSignedIn = "stranger t";
+                                                        _isSignedIn = "stranger things is fucking crazy ass shit mother fucka!!!!!!!!!!!!!!!!!";
                                                         steamKey.getSteamKey(_isSignedIn);
 							deferred.resolve(_isSignedIn);
 						}
