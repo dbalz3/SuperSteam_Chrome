@@ -1664,18 +1664,28 @@
 			
 		}
 
-		var total = 0;
+		/*
+                var total = 0;
 		
 		$(".my_listing_section:nth-child(2)").find(".market_listing_row").find(".market_listing_my_price:first").each(function() {
 			var qty = $(this).parent().find(".market_listing_my_price:last").text().trim();
 			total += Number($(this).text().trim().replace(/pуб./g,"").replace(/,(\d\d(?!\d))/g, ".$1").replace(/[^0-9\.]+/g,"")) * Number(qty);
 			currency_symbol = currency.symbolFromString($(this).text().trim());
 		});
-		
+                */
+               var total = 0;	
+               
+		$("#es_buying .market_listing_row").each(function() {
+			var qty = $(this).find(".market_listing_my_price:last").text().trim();
+			var price = currency.parse($(this).text().replace(/.+@/, "").trim());
+			total += Number(price.value) * Number(qty);
+		});
+                              		
 		if (total != 0) {
 			total = currency.format(parseFloat(total));			
 			$("#es_buying .market_recent_listing_row:last").clone().appendTo($("#es_buying .market_recent_listing_row:last").parent()).attr("id", "es_buying_total");
 			$("#es_buying_total").find("img").remove();
+                        //$("#tabContentsMyListings .market_listing_table_header span:first").after("<span class='market_listing_right_cell market_listing_my_price'><a class='es_market_lowest_button'>" + language.lowest + "</a></span>");
 			$("#es_buying_total").find(".market_listing_edit_buttons").empty();
 			$("#es_buying_total").find(".market_listing_item_name_block").empty();
 			$("#es_buying_total").find(".market_listing_buyorder_qty").empty();
@@ -1738,7 +1748,9 @@
 	function add_lowest_market_price() {
 		$("#tabContentsMyListings .market_listing_table_header span:first").css("width", "200px");
 		$("#tabContentsMyListings .market_listing_table_header span:first").after("<span class='market_listing_right_cell market_listing_my_price'><a class='es_market_lowest_button'>" + language.lowest + "</a></span>");
-		$("#tabContentsMyListings .market_listing_row").each(function() {
+		//jQuery(".market_listing_table_header:eq(1)").css( "border", "3px solid red" );
+                //$(".market_listing_table_header:eq(1)").prepend("<span class='market_listing_right_cell market_listing_my_price'><a class='es_market_lowest_button'>" + language.lowest + "</a></span>");
+                $("#tabContentsMyListings .market_listing_row").each(function() {
 			$(this).find(".market_listing_edit_buttons").css("width", "200px");
 			$(this).find(".market_listing_edit_buttons").after("<div class='market_listing_right_cell market_listing_my_price market_listing_es_lowest'>&nbsp;</div>");
 		});
