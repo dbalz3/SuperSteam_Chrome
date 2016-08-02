@@ -1675,6 +1675,13 @@
                 */
                var total = 0;	
                
+                $("#tabContentsMyListings .market_listing_table_header:eq(1) span:first").css("width","200px");
+                $("#tabContentsMyListings .market_listing_table_header:eq(1) span:first").after("<span class='market_listing_right_cell market_listing_my_price'><a class='es_market_lowest_button'>LOWEST</a></span>");
+
+                $("#tabContentsMyListings .market_listing_table_header:eq(2) span:first").css("width","200px");
+                $("#tabContentsMyListings .market_listing_table_header:eq(2) span:first").after("<span class='market_listing_right_cell market_listing_my_price'><a class='es_market_lowest_button'>LOWEST</a></span>");
+
+               
 		$("#es_buying .market_listing_row").each(function() {
 			var qty = $(this).find(".market_listing_my_price:last").text().trim();
 			var price = currency.parse($(this).text().replace(/.+@/, "").trim());
@@ -1750,6 +1757,8 @@
 		$("#tabContentsMyListings .market_listing_table_header span:first").after("<span class='market_listing_right_cell market_listing_my_price'><a class='es_market_lowest_button'>" + language.lowest + "</a></span>");
 		//jQuery(".market_listing_table_header:eq(1)").css( "border", "3px solid red" );
                 //$(".market_listing_table_header:eq(1)").prepend("<span class='market_listing_right_cell market_listing_my_price'><a class='es_market_lowest_button'>" + language.lowest + "</a></span>");
+                //jQuery("#tabContentsMyListings .market_listing_table_header:eq(1) span:first").after("<span class='market_listing_right_cell market_listing_my_price'><a class='es_market_lowest_button'>TEST</a></span>");
+                                
                 $("#tabContentsMyListings .market_listing_row").each(function() {
 			$(this).find(".market_listing_edit_buttons").css("width", "200px");
 			$(this).find(".market_listing_edit_buttons").after("<div class='market_listing_right_cell market_listing_my_price market_listing_es_lowest'>&nbsp;</div>");
