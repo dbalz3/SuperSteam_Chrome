@@ -1111,3 +1111,9 @@ a.button {
     text-decoration: none;
     color: initial;
 }
+
+#descriptorText {
+    
+    margin-top: -10px;
+
+}
