@@ -1627,7 +1627,9 @@
 			currency_symbol = currency.symbolFromString($(this).text().trim());
 		});
 		
-		if (total != 0) {
+                console.log(total);
+                //total for listings on hold popping up when no listings are on hold.  NEED TO FIX!
+		/*if (total != 0) {
 			var currency_type = currency.symbolToType(currency_symbol);
 			total = currency.format(parseFloat(total), currency_type);
 			total_after = currency.format(parseFloat(total_after), currency_type);
@@ -1636,7 +1638,7 @@
                     //jQuery(".market_listing_my_price:nth-child(4)").css( "border", "3px solid red" );
                     //jQuery(".market_recent_listing_row:nth-child(8)").after(".market_listing_row market_recent_listing_row listing_747961986475449495");
                     //jQuery("#mylisting_747961986475449495").insertAfter(".market_recent_listing_row");
-                }
+                }*/
 
 
 
