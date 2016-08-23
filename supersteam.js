@@ -1620,16 +1620,16 @@
 		var total = 0;
 		var total_after = 0;	
 		
-		$(".my_listing_section:first").find(".market_listing_row").find(".market_listing_my_price").each(function() {			
+		$("#es_listingsonhold .market_listing_row .market_listing_my_price").each(function() {			
 			var temp = $(this).text().trim().replace(/pуб./g,"").replace(/,(\d\d(?!\d))/g, ".$1").replace(/[^0-9(\.]+/g,"").split("(");
 			total += Number(temp[0]);
 			total_after += Number(temp[1]);
 			currency_symbol = currency.symbolFromString($(this).text().trim());
 		});
 		
-                console.log(total);
+                //console.log(total);
                 //total for listings on hold popping up when no listings are on hold.  NEED TO FIX!
-		/*if (total != 0) {
+		if (total != 0) {
 			var currency_type = currency.symbolToType(currency_symbol);
 			total = currency.format(parseFloat(total), currency_type);
 			total_after = currency.format(parseFloat(total_after), currency_type);
@@ -1638,7 +1638,7 @@
                     //jQuery(".market_listing_my_price:nth-child(4)").css( "border", "3px solid red" );
                     //jQuery(".market_recent_listing_row:nth-child(8)").after(".market_listing_row market_recent_listing_row listing_747961986475449495");
                     //jQuery("#mylisting_747961986475449495").insertAfter(".market_recent_listing_row");
-                }*/
+                }
 
 
 
@@ -1675,7 +1675,9 @@
 			currency_symbol = currency.symbolFromString($(this).text().trim());
 		});
                 */
-               var total = 0;	
+               
+                //Buying Total
+                var total = 0;	
                
                 $("#tabContentsMyListings .market_listing_table_header:eq(1) span:first").css("width","200px");
                 $("#tabContentsMyListings .market_listing_table_header:eq(1) span:first").after("<span class='market_listing_right_cell market_listing_my_price'><a class='es_market_lowest_button'>LOWEST</a></span>");
