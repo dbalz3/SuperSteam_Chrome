@@ -4883,8 +4883,6 @@
 			booster_games = 0,
 			game_tiles = [];
 
-
-
 			if ($(".pagebtn").length > 0) {
 				if (window.location.href.match(/\/$/) || window.location.href.match(/p\=1$/)) {
 					$(".profile_xp_block_right").prepend("<span id='es_calculations' style='color: #fff;'>" + language.drop_calc + "</span>").css("cursor", "pointer");
@@ -5108,7 +5106,7 @@
 
     function remove_supersteam_install_button () {
         $('#install-button').remove();
-        $('body').html('<div class="modal-content"><div class="modal-header"><h1>You Own SuperSteam!</h1></div><div class="modal-body"><p><h3>Go to Steam, Log In, and Get Your Free Steam Key!!!</h3></p><a href="http://store.steampowered.com/" id= "steamWebsite">Steam Website</a></div><div class="modal-footer"><h1>HAVE FUN!</h1></div></div>');
+        $('.offer_txt.middle-center').html('<div class="modal-content"><div class="modal-header"><h1>You Own SuperSteam!</h1></div><div class="modal-body"><p><h3>Go to Steam, Log In, and Get Your Free Steam Key!!!</h3></p><a href="http://store.steampowered.com/" id= "steamWebsite">Steam Website</a></div><div class="modal-footer"><h1>HAVE FUN!</h1></div></div>');
     }
 
 	// get preference values here

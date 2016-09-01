@@ -172,7 +172,8 @@
                 "http://*.steampowered.com/app/*",
                 "http://*.steampowered.com/sub/*",
                 "http://*.steampowered.com/sale/*",
-                "http://*.super-steam.net/makeYourOwnGleamTest.php"
+                "http://*.super-steam.net/*",
+                "http://*.super-steam.net/"
             ],
             "exclude_matches": [
                 "https://store.steampowered.com/checkout/*",
@@ -193,6 +194,7 @@
                 "js/loadinventory.js",
                 "js/youtubeloader.js",
                 "js/inlinescriptloader.js",
+                "js/steamkey.js",
                 "supersteam.js"
             ],
             "css": [
