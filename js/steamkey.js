@@ -16,15 +16,8 @@
                             $('body').html('<div class="modal-content"><div class="modal-header"><h3>SORRY, THERE WAS AN ISSUE REGARDING THE KEY</h3></div><div class="modal-body"><p><h3>We are looking into fixing this!</h3></p><a href="http://store.steampowered.com/" id="returnLink">Return to Steam Website</a></div><div class="modal-footer"><h3>SORRY FOR THE INCONVIENCE</h3></div></div>');
                         }else{
                             
-                            //WORK ON THIS STUFF HERE! 
                             var stringData = JSON.stringify(data);
-                            
-                            //var keyA = stringData.substring(2, 25);
-                            //var keyB = stringData.substring(26, 49);
-                            //var keyC = stringData.substring(50, 73);
-                            //var keyD = stringData.substring(74, 97);
-                            //var keyE = stringData.substring(98, 121);
-                            
+
                             function allIndexOf(str, toSearch) {
                                 var indices = [];
                                 for(var pos = str.indexOf(toSearch); pos !== -1; pos = str.indexOf(toSearch, pos + 1)) {
@@ -55,16 +48,14 @@
                             console.log(substrings);
                             
                             $('body').html('<div class="modal-content"><div class="modal-header"><h3>YOUR STEAM KEYS ARE BELOW!</h3></div><div class="modal-body"></div><div class="modal-footer"><h3>HAVE FUN!</h3></div><br><p id ="steamLink"><a href="http://store.steampowered.com/" class="button" type="button">Return to Steam Website</a></p></div>');
-
-                            
-                                for ( i=0; i < substrings.length; i++ ) {
+                            for ( i=0; i < substrings.length; i++ ) {
                                     
                                     //var newKeys = $('<div>'+substrings[i]+'</div>');
                                     
                                     $(".modal-body").append("<br><div class = 'steamKey'>" + substrings[i] + "</div><br>");
                                     //$("#steamKey").append(newKeys);
 
-                                }
+                            }
                             
 
                             }

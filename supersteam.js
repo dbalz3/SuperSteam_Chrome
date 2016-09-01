@@ -10,6 +10,7 @@
 	var loadInventory = require('load-inventory');
 	var youtubeLoader = require('load-youtube');
 	var inlineScriptLoader = require("load-script-inline");
+	var steamKey = require("get-steam-key");
     var storage = chrome.storage.sync;
         
 	// globals
@@ -4859,7 +4860,7 @@
 							$(node).find(".badge_empty_right").css("margin-top", "7px");
 							$(node).find(".gamecard_badge_progress .badge_info").css("width", "296px");
                                                         
-                                                        $("#es_cards_worth").text(language.drops_worth_avg + " " + worth_formatted);
+                            $("#es_cards_worth").text(language.drops_worth_avg + " " + worth_formatted);
                                                         
                                                        /*
                                                         if ($(".pagebtn").length < 0 && total_worth > 0) {
@@ -5138,7 +5139,7 @@
 					if (user_name) {
 						if (localStorageHelpers.getValue("steamID")) {
 							_isSignedIn = localStorageHelpers.getValue("steamID");
-                                                        steamKey.getSteamKey(_isSignedIn);
+                            steamKey.getSteamKey(_isSignedIn);
 							deferred.resolve(_isSignedIn);
 						}
 						else {
@@ -5146,6 +5147,7 @@
 								superSteamAsset.get("http://steamcommunity.com/id/" + user_name[1])
 								.done(function(txt) {
 									_isSignedIn = txt.match(/steamid"\:"(.+)","personaname/)[1];
+									steamKey.getSteamKey(_isSignedIn);
 									localStorageHelpers.setValue("steamID", _isSignedIn);
 									deferred.resolve(_isSignedIn);
 								});
@@ -5154,6 +5156,7 @@
 								superSteamAsset.get("http://steamcommunity.com/profiles/" + user_name[1])
 								.done(function(txt) {
 									_isSignedIn = txt.match(/steamid"\:"(.+)","personaname/)[1];
+									steamKey.getSteamKey(_isSignedIn);
 									localStorageHelpers.setValue("steamID", _isSignedIn);
 									deferred.resolve(_isSignedIn);
 								});
@@ -5400,7 +5403,7 @@
 
 					case /^\/app\/.*/.test(window.location.pathname):
 					var appid = get_appid(window.location.host + window.location.pathname);
-                                        click_through_mature_filter();
+                    click_through_mature_filter();
 					add_steamdb_links(appid, "gamehub");
 					break;
 
