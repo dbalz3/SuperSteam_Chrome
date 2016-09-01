@@ -10,8 +10,7 @@
 	var loadInventory = require('load-inventory');
 	var youtubeLoader = require('load-youtube');
 	var inlineScriptLoader = require("load-script-inline");
-	var steamKey = require("get-steam-key");
-        var storage = chrome.storage.sync;
+    var storage = chrome.storage.sync;
         
 	// globals
 	var localizedStrings;
@@ -1932,11 +1931,16 @@
 			separator.removeClass().addClass(((tab_count > 0) && (tab_count%4 == 0)) ? 'games_list_tab_row_separator' : 'games_list_tab_separator');
 		});
 	}
-        
+
+		function hide_age_gate(appid){
+			if($("#app_agegate").length){
+				document.cookie = 'mature_content=1; path=/app/'+appid+';';
+				document.location = "http:\/\/store.steampowered.com\/app\/"+appid+"\/";
+			}
+
+		}
         function click_through_mature_filter() {
-            console.log("click through filter");
             if($("#age_gate_btn_continue").length){
-              console.log("click through filter2");
                $("#age_gate_btn_continue").click();
             }
         }
@@ -2022,6 +2026,7 @@
 			text += $("#game_area_legal").html();
 			text += $(".game_details").html();
 			text += $(".DRM_notice").html();
+
 
 			// Games for Windows Live detection
 			if (text.toUpperCase().indexOf("GAMES FOR WINDOWS LIVE") > 0) { gfwl = true; }
@@ -4978,11 +4983,6 @@
 					if (user_name) {
 						if (localStorageHelpers.getValue("steamID")) {
 							_isSignedIn = localStorageHelpers.getValue("steamID");
-							console.log("...saved...."+_isSignedIn);
-                                                        //this needs to come out in production
-                                                        //or you can run localStorage.clear();
-                                                        _isSignedIn = "My Dick is an AKA and my Tongue";
-                                                        steamKey.getSteamKey(_isSignedIn);
 							deferred.resolve(_isSignedIn);
 						}
 						else {
@@ -4990,7 +4990,6 @@
 								superSteamAsset.get("http://steamcommunity.com/id/" + user_name[1])
 								.done(function(txt) {
 									_isSignedIn = txt.match(/steamid"\:"(.+)","personaname/)[1];
-									steamKey.getSteamKey(_isSignedIn);
 									localStorageHelpers.setValue("steamID", _isSignedIn);
 									deferred.resolve(_isSignedIn);
 								});
@@ -4999,7 +4998,6 @@
 								superSteamAsset.get("http://steamcommunity.com/profiles/" + user_name[1])
 								.done(function(txt) {
 									_isSignedIn = txt.match(/steamid"\:"(.+)","personaname/)[1];
-									steamKey.getSteamKey(_isSignedIn);
 									localStorageHelpers.setValue("steamID", _isSignedIn);
 									deferred.resolve(_isSignedIn);
 								});
@@ -5069,6 +5067,7 @@
 					case /^\/app\/.*/.test(window.location.pathname):
 					var appid = get_appid(window.location.host + window.location.pathname);
 					add_app_page_wishlist_changes(appid);
+					hide_age_gate(appid);
 					drm_warnings("app");
 					youtubeContentOnReady(appid);
 					add_metacritic_userscore();

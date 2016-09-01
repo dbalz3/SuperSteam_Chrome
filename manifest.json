@@ -193,7 +193,6 @@
                 "js/loadinventory.js",
                 "js/youtubeloader.js",
                 "js/inlinescriptloader.js",
-                "js/steamkey.js",
                 "supersteam.js"
             ],
             "css": [
