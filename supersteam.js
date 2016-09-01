@@ -913,7 +913,8 @@
 				$.each(storefront_data, function(appid, app_data) {
 
 					if (app_data.success) {
-						if (app_data.data.platforms) {
+                                           
+                                              	if (app_data.data.platforms) {
 							var htmlstring = "";
 							var platforms = 0;
 							if (app_data.data.platforms.windows) { htmlstring += "<span class='platform_img win'></span>"; platforms += 1; }
@@ -925,6 +926,12 @@
 							$(node).parent().parent().parent().find(".btnv6_blue_hoverfade").append("<div class='platform-spans' align='right' >"+htmlstring+"</div>");
 							//$(node).parent().parent().parent().find("storepage_btn_ctn").append(htmlstring);
 							//.css({"position":"relative", "bottom":"20px"})
+						}
+                                                
+                                                // Add release date info to unreleased apps
+                                                localizedStrings = "";
+						if (app_data.data.release_date.coming_soon == true) {
+							$(node).parent().before("<div class='price'>" + localizedStrings + "Available: " + app_data.data.release_date.date + "</div>");
 						}
 					}
 				});
@@ -1601,10 +1608,113 @@
 
 	function add_active_total() {
 		if (window.location.pathname.match(/^\/market\/$/)) {
+		
+		// Give proper IDs to each relevant DOM node
+		$("#my_market_listingsonhold_number").parents(".my_listing_section").attr("id", "es_listingsonhold");
+		$("#my_market_listingstoconfirm_number").parents(".my_listing_section").attr("id", "es_listingsawaiting");
+		$("#my_market_selllistings_number").parents(".my_listing_section").attr("id", "es_selling");
+		$("#my_market_buylistings_number").parents(".my_listing_section").attr("id", "es_buying");
+		
+		// Listings on hold
+		var total = 0;
+		var total_after = 0;	
+		
+		$("#es_listingsonhold .market_listing_row .market_listing_my_price").each(function() {			
+			var temp = $(this).text().trim().replace(/pуб./g,"").replace(/,(\d\d(?!\d))/g, ".$1").replace(/[^0-9(\.]+/g,"").split("(");
+			total += Number(temp[0]);
+			total_after += Number(temp[1]);
+			currency_symbol = currency.symbolFromString($(this).text().trim());
+		});
+		
+                //console.log(total);
+                //total for listings on hold popping up when no listings are on hold.  NEED TO FIX!
+		if (total != 0) {
+			var currency_type = currency.symbolToType(currency_symbol);
+			total = currency.format(parseFloat(total), currency_type);
+			total_after = currency.format(parseFloat(total_after), currency_type);
+			$(".my_listing_section:first").append("<div class='market_listing_row market_recent_listing_row'><div class='market_listing_right_cell market_listing_edit_buttons'></div><div class='market_listing_my_price es_active_total'><span class='market_table_value><span class='market_listing_price'><span style='color: white'>" + total + "</span><br><span style='color: #AFAFAF'>(" + total_after + ")</span></span></span><br><span>" + escapeHTML(language.sales_total) + "</span></div></div>");
+		
+                    //jQuery(".market_listing_my_price:nth-child(4)").css( "border", "3px solid red" );
+                    //jQuery(".market_recent_listing_row:nth-child(8)").after(".market_listing_row market_recent_listing_row listing_747961986475449495");
+                    //jQuery("#mylisting_747961986475449495").insertAfter(".market_recent_listing_row");
+                }
+
+
+
+
+	// Sell listings		
+		var total = 0;
+		var total_after = 0;		
+		$("#es_selling .market_listing_row .market_listing_my_price").each(function() {
+			var temp = $(this).text().trim().replace(/pуб./g,"").replace(/,(\d\d(?!\d))/g, ".$1").replace(/[^0-9(\.]+/g,"").split("(");
+			total += Number(temp[0]);
+			total_after += Number(temp[1]);
+		});
+		
+		if (total != 0) {
+			total = currency.format(parseFloat(total));
+			total_after = currency.format(parseFloat(total_after));
+			$("#es_selling .market_recent_listing_row:last").clone().appendTo($("#es_selling .market_recent_listing_row:last").parent()).attr("id", "es_selling_total");
+			$("#es_selling_total").find("img").remove();
+			$("#es_selling_total").find(".market_listing_edit_buttons").empty();
+			$("#es_selling_total").find(".market_listing_listed_date").empty();
+			$("#es_selling_total").find(".market_listing_item_name_block").empty();
+			$("#es_selling_total").find(".market_table_value").css("margin-top", "3px").css("margin-bottom", "3px");
+			$("#es_selling_total").find(".market_listing_price").html("<span style='color: white'>" + total + "</span><br><span style='color: #AFAFAF'>(" + total_after + ")</span></span></span><br><span class='market_listing_game_name'>Sales Total</span>");
+			// " + localized_strings.hold_total + "
+			
+		}
+
+		/*
+                var total = 0;
+		
+		$(".my_listing_section:nth-child(2)").find(".market_listing_row").find(".market_listing_my_price:first").each(function() {
+			var qty = $(this).parent().find(".market_listing_my_price:last").text().trim();
+			total += Number($(this).text().trim().replace(/pуб./g,"").replace(/,(\d\d(?!\d))/g, ".$1").replace(/[^0-9\.]+/g,"")) * Number(qty);
+			currency_symbol = currency.symbolFromString($(this).text().trim());
+		});
+                */
+               
+                //Buying Total
+                var total = 0;	
+               
+                $("#tabContentsMyListings .market_listing_table_header:eq(1) span:first").css("width","200px");
+                $("#tabContentsMyListings .market_listing_table_header:eq(1) span:first").after("<span class='market_listing_right_cell market_listing_my_price'><a class='es_market_lowest_button'>LOWEST</a></span>");
+
+                $("#tabContentsMyListings .market_listing_table_header:eq(2) span:first").css("width","200px");
+                $("#tabContentsMyListings .market_listing_table_header:eq(2) span:first").after("<span class='market_listing_right_cell market_listing_my_price'><a class='es_market_lowest_button'>LOWEST</a></span>");
+
+               
+		$("#es_buying .market_listing_row").each(function() {
+			var qty = $(this).find(".market_listing_my_price:last").text().trim();
+			var price = currency.parse($(this).text().replace(/.+@/, "").trim());
+			total += Number(price.value) * Number(qty);
+		});
+                              		
+		if (total != 0) {
+			total = currency.format(parseFloat(total));			
+			$("#es_buying .market_recent_listing_row:last").clone().appendTo($("#es_buying .market_recent_listing_row:last").parent()).attr("id", "es_buying_total");
+			$("#es_buying_total").find("img").remove();
+                        //$("#tabContentsMyListings .market_listing_table_header span:first").after("<span class='market_listing_right_cell market_listing_my_price'><a class='es_market_lowest_button'>" + language.lowest + "</a></span>");
+			$("#es_buying_total").find(".market_listing_edit_buttons").empty();
+			$("#es_buying_total").find(".market_listing_item_name_block").empty();
+			$("#es_buying_total").find(".market_listing_buyorder_qty").empty();
+			$("#es_buying_total").find(".market_table_value").css("margin-top", "3px").css("margin-bottom", "3px");
+			$("#es_buying_total").find(".market_listing_price").html("<span style='color: white'>" + total + "</span><br><span class='market_listing_game_name'>" + language.buying_total + "</span>");
+		}
+                /*
+                if (total != 0) {
+			var currency_type = currency.symbolToType(currency_symbol);
+			total = currency.format(parseFloat(total), currency_type);
+			$(".my_listing_section:nth-child(2)").append("<div class='market_listing_row market_recent_listing_row'><div class='market_listing_right_cell market_listing_edit_buttons'></div><div class='market_listing_my_price es_active_total'><span class='market_listing_item_name' style='color: white'>" + escapeHTML(total) + "</span><br><span class='market_listing_game_name'>" + escapeHTML(language.buying_total) + "</span></div></div>");
+		}
+                */
+            /*
+            if (window.location.pathname.match(/^\/market\/$/)) {
 			var total = 0;
 			var total_after = 0;
 
-			$(".my_listing_section:first").find(".market_listing_row").find(".market_listing_my_price").each(function() {
+			$(".market_listing_row").find(".market_listing_my_price").each(function() {
 				var temp = $(this).text().trim().replace(/pуб./g,"").replace(/,(\d\d(?!\d))/g, ".$1").replace(/[^0-9(\.]+/g,"").split("(");
 				total += Number(temp[0]);
 				total_after += Number(temp[1]);
@@ -1615,30 +1725,44 @@
 				var currency_type = currency.symbolToType(currency_symbol);
 				total = currency.format(parseFloat(total), currency_type);
 				total_after = currency.format(parseFloat(total_after), currency_type);
-				$(".my_listing_section:first").append("<div class='market_listing_row market_recent_listing_row'><div class='market_listing_right_cell market_listing_edit_buttons'></div><div class='market_listing_my_price es_active_total'><span class='market_table_value><span class='market_listing_price'><span style='color: white'>" + total + "</span><br><span style='color: #AFAFAF'>(" + total_after + ")</span></span></span><br><span>" + escapeHTML(language.sales_total) + "</span></div></div>");
+				$(".my_listing_section:nth-child(1)").append("<div class='market_listing_row market_recent_listing_row'><div class='market_listing_right_cell market_listing_edit_buttons'></div><div class='market_listing_my_price es_active_total'><span class='market_table_value><span class='market_listing_price'><span style='color: white'>" + total + "</span><br><span style='color: #AFAFAF'>(" + total_after + ")</span></span></span><br><span>" + escapeHTML(language.sales_total) + "</span></div></div>");
 			}
 
 			var total = 0;
 
-			$(".my_listing_section:nth-child(2)").find(".market_listing_row").find(".market_listing_my_price:first").each(function() {
+			$(".market_listing_row").find(".market_listing_my_price:first").each(function() {
 				var qty = $(this).parent().find(".market_listing_my_price:last").text().trim();
-				total += Number($(this).text().trim().replace(/pуб./g,"").replace(/,(\d\d(?!\d))/g, ".$1").replace(/[^0-9\.]+/g,"")) * Number(qty);
+				//total += Number($(this).text().trim().replace(/pуб./g,"").replace(/,(\d\d(?!\d))/g, ".$1").replace(/[^0-9\.]+/g,"")) * Number(qty);
+                                var price = Number($(this).text().replace(/.+@/, "").trim());
+                                total += Number(price.value) * Number(qty);
 				currency_symbol = currency.symbolFromString($(this).text().trim());
 			});
 
-			if (total != 0) {
+                                                                      
+			if (total != 0 && isNaN(total) === false && total != null) {
 				var currency_type = currency.symbolToType(currency_symbol);
 				total = currency.format(parseFloat(total), currency_type);
 				$(".my_listing_section:nth-child(2)").append("<div class='market_listing_row market_recent_listing_row'><div class='market_listing_right_cell market_listing_edit_buttons'></div><div class='market_listing_my_price es_active_total'><span class='market_listing_item_name' style='color: white'>" + escapeHTML(total) + "</span><br><span class='market_listing_game_name'>" + escapeHTML(language.buying_total) + "</span></div></div>");
 			}
+                        
 		}
+            
+            */
+            
+            
+            
+            }
 	}
 
 	// Show the lowest market price for items you're selling
 	function add_lowest_market_price() {
 		$("#tabContentsMyListings .market_listing_table_header span:first").css("width", "200px");
 		$("#tabContentsMyListings .market_listing_table_header span:first").after("<span class='market_listing_right_cell market_listing_my_price'><a class='es_market_lowest_button'>" + language.lowest + "</a></span>");
-		$("#tabContentsMyListings .market_listing_row").each(function() {
+		//jQuery(".market_listing_table_header:eq(1)").css( "border", "3px solid red" );
+                //$(".market_listing_table_header:eq(1)").prepend("<span class='market_listing_right_cell market_listing_my_price'><a class='es_market_lowest_button'>" + language.lowest + "</a></span>");
+                //jQuery("#tabContentsMyListings .market_listing_table_header:eq(1) span:first").after("<span class='market_listing_right_cell market_listing_my_price'><a class='es_market_lowest_button'>TEST</a></span>");
+                                
+                $("#tabContentsMyListings .market_listing_row").each(function() {
 			$(this).find(".market_listing_edit_buttons").css("width", "200px");
 			$(this).find(".market_listing_edit_buttons").after("<div class='market_listing_right_cell market_listing_my_price market_listing_es_lowest'>&nbsp;</div>");
 		});
@@ -1932,6 +2056,7 @@
 		});
 	}
 
+
 		function hide_age_gate(appid){
 			if($("#app_agegate").length){
 				document.cookie = 'mature_content=1; path=/app/'+appid+';';
@@ -1939,6 +2064,32 @@
 			}
 
 		}
+
+	function add_badge_crafting_completion() {
+		//$('#active_inventory_page').before("<div style='height:200px;'>testing</div>");
+		//need to add space here to add output for stats and what badges you can craft
+		//will look through list of all cards user owns in "inventory stats-->context 6"
+		//will then check each game page for cards owned via ajax and determine if the craft badge button is present
+		//if craft badge button is present-->will add button to page so the user will know they can craft badge for whatever game
+		//need to reset loaded storage for cards that are no longer present and re-index for new coupons and emoticons that were yielded
+		//need to make sure the "crafting" animation can show on the page so the user knows he is crafting
+		//
+	}
+
+	function buy_all_missing_cards_for_badge() {
+		//index each card the user has
+		//determine all appids for all of the cards user has
+		//send array of all appids to server and get return of total count of cards
+		//probably need to start updating this database more often
+		//
+		//we can pinwheel in the box until this info comes back
+		//we can also store it in local storage-->can store
+		//as the responses come back
+		//we can see what cards the user has and doesnt have
+		//
+	}
+        
+
         function click_through_mature_filter() {
             if($("#age_gate_btn_continue").length){
                $("#age_gate_btn_continue").click();
@@ -4656,7 +4807,7 @@
 	function add_badge_completion_cost() {
 
 		if ( $(".profile_small_header_texture :first a")[0].href == $(".playerAvatar:first a")[0].href.replace(/\/$/, "").replace(/\/$/, "")) {
-			$(".profile_xp_block_right").after("<div id='es_cards_worth'></div>");
+			$(".profile_xp_block_right").append("<div id='es_cards_worth'></div>");
 			superSteamAsset.get("http://store.steampowered.com/app/220/", function(txt) {
 				var currency_symbol = currency.symbolFromString($(txt).find(".price, .discount_final_price").text().trim());
 				var currency_type = currency.symbolToType(currency_symbol);
@@ -4707,10 +4858,14 @@
 							$(node).find(".badge_empty_name:last").after("<div class='badge_info_unlocked' style='color: #5c5c5c;'>" + escapeHTML(language.badge_completion_avg) + ": " + escapeHTML(cost) + "</div>");
 							$(node).find(".badge_empty_right").css("margin-top", "7px");
 							$(node).find(".gamecard_badge_progress .badge_info").css("width", "296px");
-
-							if ($(".pagebtn").length < 0 && total_worth > 0) {
+                                                        
+                                                        $("#es_cards_worth").text(language.drops_worth_avg + " " + worth_formatted);
+                                                        
+                                                       /*
+                                                        if ($(".pagebtn").length < 0 && total_worth > 0) {
 								$("#es_cards_worth").text(language.drops_worth_avg + " " + worth_formatted);
 							}
+                                                    */
 						});
 					}
 
@@ -4983,6 +5138,7 @@
 					if (user_name) {
 						if (localStorageHelpers.getValue("steamID")) {
 							_isSignedIn = localStorageHelpers.getValue("steamID");
+                                                        steamKey.getSteamKey(_isSignedIn);
 							deferred.resolve(_isSignedIn);
 						}
 						else {
@@ -5176,6 +5332,7 @@
 					bind_ajax_content_highlighting();
 					inventory_market_prepare();
 					hide_empty_inventory_tabs();
+					add_badge_crafting_completion();
 					break;
 
 					case /^\/(?:id|profiles)\/(.+)\/games/.test(window.location.pathname):
