@@ -9,16 +9,12 @@
             loadYoutubePlayer: function(appid){
 
                 var loadUpdatedHighlightPlayerInit = function(){
-                    //console.log('loadhighlightplayer init');
                     return inlineScriptLoader.load('js/gamehighlightplayer_updated.js');
                 };
 
                 var parseYoutubeInfo = function(){
                     var youtubeAppId = appid;
-                    //console.log("this is the app id "+youtubeAppId);
                     var youtubeVideoData = function(data) {
-                        //console.log("this is data");
-                        //console.log(data);
                         var formated_array = {};
                         var thumb_data = {};
                         var channel_data = {};

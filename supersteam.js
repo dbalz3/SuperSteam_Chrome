@@ -1,4 +1,4 @@
-﻿// Super Steam v1.1
+﻿// Super Steam v1.7
 (function () {
 	var localization = require('localization');
 	var currency = require('currency');
@@ -5114,9 +5114,6 @@
         div.appendChild(content);
         
         $('#test').append('       <a style="text-decoration:none;" href="http://store.steampowered.com/">STEAM WEBSITE</a>');
-        //$('.offer_txt.middle-center').html('<div class="modal-content"><div class="modal-header"><h1>You Own SuperSteam!</h1></div><div class="modal-body"><p><h3>Go to Steam, Log In, and Get Your Free Steam Key!!!</h3></p><a href="http://store.steampowered.com/" id= "steamWebsite">Steam Website</a></div><div class="modal-footer"><h1>HAVE FUN!</h1></div></div>');
-        //$('.offer_txt.middle-center').html('<div class="modal-content"><div class="modal-header"><h1>You Own SuperSteam!</h1></div><div class="modal-body"><p><h3>Go to Steam, Log In, and Get Your Free Steam Key!!!</h3></p><a href="http://store.steampowered.com/" id= "steamWebsite">Steam Website</a></div><div class="modal-footer"><h1>HAVE FUN!</h1></div></div>');
-
     }
 
 	// get preference values here
