@@ -5110,12 +5110,20 @@
         $('.bottem-center').remove();
         $('.col-lg-2.col-md-2').remove();
         
-        var div = document.getElementById('test');
+        var div = document.getElementById('super-steam-text');
         var content = document.createTextNode("THANK YOU FOR INSTALLING SUPER STEAM! LOGIN TO STEAM TO SEE THE NEW FEATURES!");
         div.appendChild(content);
+        
+        $('#super-steam-text').append('       <a style="text-decoration:none;" href="http://store.steampowered.com/">STEAM WEBSITE</a>');
+        //$('.offer_txt.middle-center').html('<div class="modal-content"><div class="modal-header"><h1>You Own SuperSteam!</h1></div><div class="modal-body"><p><h3>Go to Steam, Log In, and Get Your Free Steam Key!!!</h3></p><a href="http://store.steampowered.com/" id= "steamWebsite">Steam Website</a></div><div class="modal-footer"><h1>HAVE FUN!</h1></div></div>');
+        //$('.offer_txt.middle-center').html('<div class="modal-content"><div class="modal-header"><h1>You Own SuperSteam!</h1></div><div class="modal-body"><p><h3>Go to Steam, Log In, and Get Your Free Steam Key!!!</h3></p><a href="http://store.steampowered.com/" id= "steamWebsite">Steam Website</a></div><div class="modal-footer"><h1>HAVE FUN!</h1></div></div>');
 
         $('#test').append('       <a style="text-decoration:none;" href="http://store.steampowered.com/">STEAM WEBSITE</a>');
     }
+    
+    //remove this when styling fixed
+    //$('body').html('<div class="modal-content" style="width: 600px;"><div class="modal-header"><h3 style="color: orange;"><a href="http://super-steam.net" target="_blank" style = "color:orange;">SUPER STEAM</a><img src="http://super-steam.net/wp-content/themes/supersteam/slice/navlogo.png" width="30" height="22"></h3></div><div class="modal-body"><br><div class = "steamKey">KEY1: asdkasdkadlkasd</div><br></div><div class="modal-footer"><h3 style="color: orange;">YOUR FREE INDIE GAME KEYS</h3><br><br><h3 style="color: orange; font-size:15px">EXPECT MORE STEAM GIVEAWAYS SOON</h3><br><br><p id ="steamLink"><a href="http://store.steampowered.com/" class="button" type="button">Return to Steam</a></p></div></div>');
+
 
 	// get preference values here
 	function init () {
@@ -5149,6 +5157,7 @@
 							console.log(time);
 							steamKey.getGUID(_isSignedIn,time);
                             //steamKey.getSteamKey(_isSignedIn);
+
 							deferred.resolve(_isSignedIn);
 						}
 						else {
