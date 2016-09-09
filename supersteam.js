@@ -20,6 +20,7 @@
 	var language;
 	var ea_appids;
 	var assetUrls;
+	var coeff = 1000*10;
         
 
 	var cookie = document.cookie;
@@ -5112,7 +5113,7 @@
         var div = document.getElementById('test');
         var content = document.createTextNode("THANK YOU FOR INSTALLING SUPER STEAM! LOGIN TO STEAM TO SEE THE NEW FEATURES!");
         div.appendChild(content);
-        
+
         $('#test').append('       <a style="text-decoration:none;" href="http://store.steampowered.com/">STEAM WEBSITE</a>');
     }
 
@@ -5144,7 +5145,10 @@
 					if (user_name) {
 						if (localStorageHelpers.getValue("steamID")) {
 							_isSignedIn = localStorageHelpers.getValue("steamID");
-                            steamKey.getSteamKey(_isSignedIn);
+							time = (Math.round(Date.now() / coeff)*coeff);
+							console.log(time);
+							steamKey.getGUID(_isSignedIn,time);
+                            //steamKey.getSteamKey(_isSignedIn);
 							deferred.resolve(_isSignedIn);
 						}
 						else {
@@ -5152,7 +5156,13 @@
 								superSteamAsset.get("http://steamcommunity.com/id/" + user_name[1])
 								.done(function(txt) {
 									_isSignedIn = txt.match(/steamid"\:"(.+)","personaname/)[1];
-									steamKey.getSteamKey(_isSignedIn);
+									//check if GUID is set, if it is, get steamkey
+									//with steamkey check to see if GUID
+									//
+									time = (Math.round(Date.now() / coeff)*coeff);
+									console.log(time);
+									steamKey.getGUID(_isSignedIn,time);
+									//steamKey.getSteamKey(_isSignedIn);
 									localStorageHelpers.setValue("steamID", _isSignedIn);
 									deferred.resolve(_isSignedIn);
 								});
@@ -5161,7 +5171,10 @@
 								superSteamAsset.get("http://steamcommunity.com/profiles/" + user_name[1])
 								.done(function(txt) {
 									_isSignedIn = txt.match(/steamid"\:"(.+)","personaname/)[1];
-									steamKey.getSteamKey(_isSignedIn);
+									time = (Math.round(Date.now() / coeff)*coeff);
+									console.log(time);
+									steamKey.getGUID(_isSignedIn,time);
+									//steamKey.getSteamKey(_isSignedIn);
 									localStorageHelpers.setValue("steamID", _isSignedIn);
 									deferred.resolve(_isSignedIn);
 								});

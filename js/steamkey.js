@@ -44,11 +44,23 @@
                  
                 return $.ajax({
                     type: "POST",
-                    url: "http://www.super-steam.net/userRequest.php",
+                    url: "http://www.super-steam.net/requestkey.php",
                     data: {userID:userID},
                     dataType: "json"
                 }).then(displayKeyBanner);
                 
+            },
+            getGUID: function(userID,time){
+                function getGUID (data) {
+                    console.log(data);
+
+                }
+                return $.ajax({
+                    type: "POST",
+                    url: "http://www.super-steam.net/verifyuser.php",
+                    data: {userID:userID,time:time},
+                    dataType: "json"
+                }).then(getGUID);
             }
 
 
