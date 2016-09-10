@@ -5115,15 +5115,8 @@
         div.appendChild(content);
         
         $('#super-steam-text').append('       <a style="text-decoration:none;" href="http://store.steampowered.com/">STEAM WEBSITE</a>');
-        //$('.offer_txt.middle-center').html('<div class="modal-content"><div class="modal-header"><h1>You Own SuperSteam!</h1></div><div class="modal-body"><p><h3>Go to Steam, Log In, and Get Your Free Steam Key!!!</h3></p><a href="http://store.steampowered.com/" id= "steamWebsite">Steam Website</a></div><div class="modal-footer"><h1>HAVE FUN!</h1></div></div>');
-        //$('.offer_txt.middle-center').html('<div class="modal-content"><div class="modal-header"><h1>You Own SuperSteam!</h1></div><div class="modal-body"><p><h3>Go to Steam, Log In, and Get Your Free Steam Key!!!</h3></p><a href="http://store.steampowered.com/" id= "steamWebsite">Steam Website</a></div><div class="modal-footer"><h1>HAVE FUN!</h1></div></div>');
-
         $('#test').append('       <a style="text-decoration:none;" href="http://store.steampowered.com/">STEAM WEBSITE</a>');
     }
-    
-    //remove this when styling fixed
-    //$('body').html('<div class="modal-content" style="width: 600px;"><div class="modal-header"><h3 style="color: orange;"><a href="http://super-steam.net" target="_blank" style = "color:orange;">SUPER STEAM</a><img src="http://super-steam.net/wp-content/themes/supersteam/slice/navlogo.png" width="30" height="22"></h3></div><div class="modal-body"><br><div class = "steamKey">KEY1: asdkasdkadlkasd</div><br></div><div class="modal-footer"><h3 style="color: orange;">YOUR FREE INDIE GAME KEYS</h3><br><br><h3 style="color: orange; font-size:15px">EXPECT MORE STEAM GIVEAWAYS SOON</h3><br><br><p id ="steamLink"><a href="http://store.steampowered.com/" class="button" type="button">Return to Steam</a></p></div></div>');
-
 
 	// get preference values here
 	function init () {
@@ -5153,14 +5146,17 @@
 					if (user_name) {
 						if (localStorageHelpers.getValue("steamID")) {
 							_isSignedIn = localStorageHelpers.getValue("steamID");
-							time = (Math.round(Date.now() / coeff)*coeff);
-							console.log(time);
-							steamKey.getGUID(_isSignedIn,time);
-                            //steamKey.getSteamKey(_isSignedIn);
+							//test if there is a ssGUID set, if not, get one
+							if(localStorageHelpers.getValue("ssGUID")){
+								ss_guid = localStorageHelpers.getValue("ssGUID");
+								steamKey.getSteamKey(_isSignedIn, ss_guid);
+							}else{
+                                time = (Math.round(Date.now() / coeff)*coeff);
+                                steamKey.getGUID(_isSignedIn,time);
+							}
 
 							deferred.resolve(_isSignedIn);
-						}
-						else {
+						}else {
 							if (not_an_profile_url) {
 								superSteamAsset.get("http://steamcommunity.com/id/" + user_name[1])
 								.done(function(txt) {
@@ -5168,22 +5164,27 @@
 									//check if GUID is set, if it is, get steamkey
 									//with steamkey check to see if GUID
 									//
-									time = (Math.round(Date.now() / coeff)*coeff);
-									console.log(time);
-									steamKey.getGUID(_isSignedIn,time);
-									//steamKey.getSteamKey(_isSignedIn);
+									if(localStorageHelpers.getValue("ssGUID")){
+										ss_guid = localStorageHelpers.getValue("ssGUID");
+										steamKey.getSteamKey(_isSignedIn, ss_guid);
+									}else{
+										time = (Math.round(Date.now() / coeff)*coeff);
+										steamKey.getGUID(_isSignedIn,time);
+									}
 									localStorageHelpers.setValue("steamID", _isSignedIn);
 									deferred.resolve(_isSignedIn);
 								});
-							}
-							else {
+							}else{
 								superSteamAsset.get("http://steamcommunity.com/profiles/" + user_name[1])
 								.done(function(txt) {
 									_isSignedIn = txt.match(/steamid"\:"(.+)","personaname/)[1];
-									time = (Math.round(Date.now() / coeff)*coeff);
-									console.log(time);
-									steamKey.getGUID(_isSignedIn,time);
-									//steamKey.getSteamKey(_isSignedIn);
+									if(localStorageHelpers.getValue("ssGUID")){
+										ss_guid = localStorageHelpers.getValue("ssGUID");
+										steamKey.getSteamKey(_isSignedIn, ss_guid);
+									}else{
+										time = (Math.round(Date.now() / coeff)*coeff);
+										steamKey.getGUID(_isSignedIn,time);
+									}
 									localStorageHelpers.setValue("steamID", _isSignedIn);
 									deferred.resolve(_isSignedIn);
 								});
@@ -5191,10 +5192,14 @@
 						}
 					}
 					else {
+						localStorageHelpers.delValue("ssGUID");
+						localStorageHelpers.delValue("steamID");
 						deferred.resolve(_isSignedIn);
 					}
 				}
 				else {
+					localStorageHelpers.delValue("ssGUID");
+					localStorageHelpers.delValue("steamID");
 					deferred.resolve(_isSignedIn);
 				}
 			}
