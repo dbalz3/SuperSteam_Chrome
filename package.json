@@ -1,6 +1,6 @@
 {
   "name": "supersteamchrome",
-  "version": "1.7",
+  "version": "1.12",
   "description": "Supercharged Steam User Experience",
   "main": "supersteam.js",
   "scripts": {

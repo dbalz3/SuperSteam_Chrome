@@ -1,4 +1,4 @@
-﻿// Super Steam v1.7
+﻿// Super Steam v1.12
 (function () {
 	var localization = require('localization');
 	var currency = require('currency');
@@ -5109,13 +5109,8 @@
         $('#install-link').remove();
         $('.bottem-center').remove();
         $('.col-lg-2.col-md-2').remove();
-        
-        var div = document.getElementById('super-steam-text');
-        var content = document.createTextNode("THANK YOU FOR INSTALLING SUPER STEAM! LOGIN TO STEAM TO SEE THE NEW FEATURES!");
-        div.appendChild(content);
-        
-        $('#super-steam-text').append('       <a style="text-decoration:none;" href="http://store.steampowered.com/">STEAM WEBSITE</a>');
-        $('#test').append('       <a style="text-decoration:none;" href="http://store.steampowered.com/">STEAM WEBSITE</a>');
+
+		$("#super-steam-text").html("Thank you for installing Super Steam. <br>Step 1. Login to Steam <br> Step 2. Refresh the page and you will receive your keys.<br><a style='text-decoration:none;' href='http://store.steampowered.com/'>GO TO STEAM</a>");
     }
 
 	// get preference values here
@@ -5246,6 +5241,9 @@
 			process_early_access();
 			
 			switch (window.location.host) {
+				case "www.super-steam.net":
+					remove_supersteam_install_button();
+					break;
 				case "super-steam.net":
 					remove_supersteam_install_button();
 					break;

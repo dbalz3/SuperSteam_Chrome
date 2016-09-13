@@ -55,10 +55,14 @@
             },
             getGUID: function(userID,time){
                 function getGUID (data) {
-                    var guidData = data[0];
-                    //interpret the data and add it to the localStorageGUID
-                    localStorageHelpers.setValue("ssGUID", guidData);
+                    if (data[0] !== "false") {
 
+                        var guidData = data[0];
+                        //interpret the data and add it to the localStorageGUID
+                        localStorageHelpers.setValue("ssGUID", guidData);
+                    }else{
+                        console.log("no guid returned");
+                    }
                 }
                 return $.ajax({
                     type: "POST",
