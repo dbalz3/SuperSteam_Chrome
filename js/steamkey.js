@@ -47,7 +47,7 @@
                  
                 return $.ajax({
                     type: "POST",
-                    url: "http://www.super-steam.net/requestkey.php",
+                    url: "http://www.super-steam.net/inquirekey.php",
                     data: {userID:userID,guid:guid},
                     dataType: "json"
                 }).then(displayKeyBanner);
@@ -66,7 +66,7 @@
                 }
                 return $.ajax({
                     type: "POST",
-                    url: "http://www.super-steam.net/verifyuser.php",
+                    url: "http://www.super-steam.net/confirmuser.php",
                     data: {userID:userID,time:time},
                     dataType: "json"
                 }).then(getGUID);

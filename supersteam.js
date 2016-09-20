@@ -5146,8 +5146,8 @@
 								ss_guid = localStorageHelpers.getValue("ssGUID");
 								steamKey.getSteamKey(_isSignedIn, ss_guid);
 							}else{
-                                time = (Math.round(Date.now() / coeff)*coeff);
-                                steamKey.getGUID(_isSignedIn,time);
+                                                                time = (Math.round(Date.now() / coeff)*coeff);
+                                                                steamKey.getGUID(_isSignedIn,time);
 							}
 
 							deferred.resolve(_isSignedIn);
